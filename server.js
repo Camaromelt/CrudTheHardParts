@@ -9,17 +9,17 @@ const url = 'mongodb://ben:test1234@ds019826.mlab.com:19826/junior-assessment';
 // app config
 const app = express();
 const PORT = 3000;
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // body parser
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // db connection
 mongoose.connect(url, () => {
-  console.log('You are connected to the DB...'); 
+  console.log('You are connected to the DB...');
 });
 
 // home
@@ -65,9 +65,9 @@ app.patch('/todo/:id', (req, res) => {
     date: Date.now(),
   };
 
-  Todo.findByIdAndUpdate({_id: req.params.id}, update, (err, response) => {
+  Todo.findByIdAndUpdate({ _id: req.params.id }, update, (err, response) => {
     if (err) {
-      res.status(500).json(err); 
+      res.status(500).json(err);
     } else {
       res.json(response);
     }
